@@ -51,7 +51,7 @@ namespace GitHubAppDotnetSample.Filters
 
             var privateKeyString = ConfigurationPath.Combine(Constants.GitHubAppSectionKey, Constants.PrivateKey, Constants.PrivateKeyString);
 
-            var privateKeyBae64 = ConfigurationPath.Combine(Constants.GitHubAppSectionKey, Constants.PrivateKey, Constants.PrivateKeyBase64);
+            var privateKeyBase64 = ConfigurationPath.Combine(Constants.GitHubAppSectionKey, Constants.PrivateKey, Constants.PrivateKeyBase64);
 
             var privateKeyFile = ConfigurationPath.Combine(Constants.GitHubAppSectionKey, Constants.PrivateKey, Constants.PrivateKeyFile);
 
@@ -73,9 +73,9 @@ namespace GitHubAppDotnetSample.Filters
 
                 return generator.CreateEncodedJwtToken();
             }
-            else if (configuration.GetSection(privateKeyBae64).Exists())
+            else if (configuration.GetSection(privateKeyBase64).Exists())
             {
-                var encodedKey = configuration.GetSection(privateKeyBae64);
+                var encodedKey = configuration.GetSection(privateKeyBase64);
 
                 byte[] data = Convert.FromBase64String(encodedKey.Value);
                 string decodedString = Encoding.UTF8.GetString(data);
