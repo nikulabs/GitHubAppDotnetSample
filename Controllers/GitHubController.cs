@@ -1,9 +1,10 @@
-using System;
+using System.IO;
 using GitHubAppDotnetSample.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebHooks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Octokit;
 
@@ -65,10 +66,22 @@ namespace GitHubAppDotnetSample.Controllers
             {
                 Credentials = new Credentials(response.Token)
             };
+            var configFile = await installationClient.Repository.Content.GetAllContents(
+                 owner, repo, ".github/brnbot.json"
+            );
+
+            var configContent = configFile[0].Content;
 
             // add a comment to the issue
-            var issueComment = await installationClient.Issue.Comment.Create(owner, repo, issueNumber, "Hello from my GitHubApp Installation!");
-
+            var issueComment = await installationClient.Issue.Comment.Create(owner, repo, issueNumber, configContent);
+            /*
+            // deserialize JSON directly from a file
+            using (StreamReader file = System.IO.File.OpenText(configContent.ToString()))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                Movie movie2 = (Movie)serializer.Deserialize(file, typeof(Movie));
+            }
+            */
             return Ok();
         }
 
