@@ -95,6 +95,7 @@ namespace GitHubAppDotnetSample.Controllers
             var installationId = (int)data["installation"]["id"];
             var owner = (string)data["repository"]["owner"]["login"];
             var repo = (string)data["repository"]["name"];
+            var shaRef = (string)data["pull_request"]["head"]["sha"];
 
             //fields for pull request
             var issueNumber = (int)data["number"];
@@ -114,8 +115,8 @@ namespace GitHubAppDotnetSample.Controllers
             {
                 Credentials = new Credentials(response.Token)
             };
-            var configFile = await installationClient.Repository.Content.GetAllContents(
-                 owner, repo, ".github/brnbot.json"
+            var configFile = await installationClient.Repository.Content.GetAllContentsByRef(
+                 owner, repo, ".github/brnbot.json", shaRef
             );
             var filesChanged = await installationClient.Repository.PullRequest.Files(owner, repo, issueNumber);
             var fileNamesChanged = filesChanged.Select(x => x.FileName).ToImmutableList();
@@ -136,7 +137,7 @@ namespace GitHubAppDotnetSample.Controllers
 
             }
 
-            if (applicableRules.Count() > 0 )
+            if (applicableRules.Count() > 0)
             {
                 var commentBuilder = new StringBuilder("Found applicable rules:");
                 foreach (var rule in applicableRules)
