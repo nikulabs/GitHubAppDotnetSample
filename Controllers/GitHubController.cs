@@ -1,9 +1,8 @@
-using System.IO;
-using GitHubAppDotnetSample.Filters;
+using System.Linq;
+using System.Collections.Generic;
+using GitHubAppDotnetSample.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebHooks;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Octokit;
@@ -71,17 +70,10 @@ namespace GitHubAppDotnetSample.Controllers
             );
 
             var configContent = configFile[0].Content;
+            var appConfig = JsonConvert.DeserializeObject<List<RuleItem>>(configContent);
 
             // add a comment to the issue
-            var issueComment = await installationClient.Issue.Comment.Create(owner, repo, issueNumber, configContent);
-            /*
-            // deserialize JSON directly from a file
-            using (StreamReader file = System.IO.File.OpenText(configContent.ToString()))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                Movie movie2 = (Movie)serializer.Deserialize(file, typeof(Movie));
-            }
-            */
+            var issueComment = await installationClient.Issue.Comment.Create(owner, repo, issueNumber, JsonConvert.SerializeObject(appConfig));
             return Ok();
         }
 
