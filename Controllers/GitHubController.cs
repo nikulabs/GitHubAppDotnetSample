@@ -131,8 +131,12 @@ namespace GitHubAppDotnetSample.Controllers
                 {
                     if (rgx.IsMatch(fileName))
                     {
+                        if (applicableRules.ContainsKey(rule))
+                        {
                         applicableRules[rule].Append(fileName);
                     }
+                        applicableRules[rule] = new List<string>{fileName};
+                }
                 }
 
             }
