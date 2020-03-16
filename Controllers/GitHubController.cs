@@ -133,20 +133,20 @@ namespace GitHubAppDotnetSample.Controllers
                     {
                         if (applicableRules.ContainsKey(rule))
                         {
-                        applicableRules[rule].Append(fileName);
-                    }
+                            applicableRules[rule].Append(fileName);
+                        }
                         applicableRules[rule] = new List<string>{fileName};
-                }
+                    }
                 }
 
             }
 
             if (applicableRules.Count() > 0)
             {
-                var commentBuilder = new StringBuilder("Found applicable rules:");
+                var commentBuilder = new StringBuilder("Found applicable rules:\n");
                 foreach (var rule in applicableRules)
                 {
-                    commentBuilder.AppendLine(rule.Key.Name);
+                    commentBuilder.AppendLine($"{rule.Key.Name}: {rule.Key.Message}");
                     commentBuilder.Append(String.Join("\n\t", rule.Value));
                 }
 
