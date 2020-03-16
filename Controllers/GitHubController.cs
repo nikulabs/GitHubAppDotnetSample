@@ -143,7 +143,7 @@ namespace GitHubAppDotnetSample.Controllers
 
             if (applicableRules.Count() > 0)
             {
-                var commentBuilder = new StringBuilder("Found applicable rules:\n");
+                var commentBuilder = new StringBuilder();
                 foreach (var rule in applicableRules)
                 {
                     commentBuilder.AppendLine($"{rule.Key.Name}: {rule.Key.Message}");
