@@ -1,8 +1,7 @@
-﻿using GitHubAppDotnetSample;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace GitHubAppDotnetHelloWorld
+namespace SAXGitHubApp
 {
     public class Program
     {

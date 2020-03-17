@@ -1,4 +1,4 @@
-namespace GitHubAppDotnetSample.Models
+namespace SAXGitHubApp.Models
 {
     public class RuleItem
     {

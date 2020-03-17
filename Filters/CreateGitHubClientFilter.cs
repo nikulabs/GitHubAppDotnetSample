@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Octokit;
 
-namespace GitHubAppDotnetSample.Filters
+namespace SAXGitHubApp.Filters
 {
     public class CreateGitHubClientFilter : IAsyncResourceFilter
     {

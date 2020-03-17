@@ -4,14 +4,14 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using GitHubAppDotnetSample.Models;
+using SAXGitHubApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebHooks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Octokit;
 
-namespace GitHubAppDotnetSample.Controllers
+namespace SAXGitHubApp.Controllers
 {
     // this class is taken from the webhook sample in https://github.com/aspnet/AspLabs
     public class GitHubController : ControllerBase

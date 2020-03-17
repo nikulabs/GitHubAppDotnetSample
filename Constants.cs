@@ -1,9 +1,9 @@
 
-namespace GitHubAppDotnetSample
+namespace SAXGitHubApp
 {
     public static class Constants
     {
-        public static string GitHubAppName => "GitHubAppDotnetSample";
+        public static string GitHubAppName => "SAXGitHubApp";
 
         public static string GitHubAppSectionKey => "GitHubApp";
 

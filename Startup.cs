@@ -1,10 +1,10 @@
-﻿using GitHubAppDotnetSample.Filters;
+﻿using SAXGitHubApp.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GitHubAppDotnetSample
+namespace SAXGitHubApp
 {
     public class Startup
     {
