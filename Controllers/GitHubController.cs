@@ -70,7 +70,7 @@ namespace GitHubAppDotnetSample.Controllers
                 Credentials = new Credentials(response.Token)
             };
             var configFile = await installationClient.Repository.Content.GetAllContents(
-                 owner, repo, ".github/brnbot.json"
+                 owner, repo, Constants.ConfigFile
             );
 
             var configContent = configFile[0].Content;
@@ -116,7 +116,7 @@ namespace GitHubAppDotnetSample.Controllers
                 Credentials = new Credentials(response.Token)
             };
             var configFile = await installationClient.Repository.Content.GetAllContentsByRef(
-                 owner, repo, ".github/brnbot.json", shaRef
+                 owner, repo, Constants.ConfigFile, shaRef
             );
             var filesChanged = await installationClient.Repository.PullRequest.Files(owner, repo, issueNumber);
             var fileNamesChanged = filesChanged.Select(x => x.FileName).ToImmutableList();

@@ -19,5 +19,7 @@ namespace GitHubAppDotnetSample
 
         public static string PrivateKeyFile => "file";
 
+        public static string ConfigFile => "sax-github-app.json";
+
     }
 }
